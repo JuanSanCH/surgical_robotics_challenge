@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # //==============================================================================
 # /*
 #     Software License Agreement (BSD License)
@@ -101,7 +101,7 @@ class PSM:
         self._joints_error_mask = [1, 1, 1, 0, 0, 0]  # Only apply error to joints with 1's
         self._joint_error_model = JointErrorsModel(self.name, self._num_joints)
         self.interpolater = Interpolation()
-        self._force_exit_thread = False
+        self._force_exit_thread = True #False
         self._thread_lock = Lock()
         if add_joint_errors:
             max_errors_list = [0.] * self._num_joints  # No error
@@ -211,7 +211,7 @@ class PSM:
     
     def _execute_trajectory(self, trajectory_gen, execute_time, control_rate):
         self._thread_lock.acquire()
-        self._force_exit_thread = False
+        self._force_exit_thread = True #False
         init_time = rospy.Time.now().to_sec()
         control_rate = rospy.Rate(control_rate)
         while not rospy.is_shutdown() and not self._force_exit_thread:

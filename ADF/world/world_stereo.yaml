@@ -5,11 +5,13 @@ environment: "./checkered_floor.yaml"
 namespace: /ambf/env/
 max iterations: 50
 gravity: { x: 0.0, y: 0.0, z: -9.8 }
+
+#####################I COMMENTED HERE##################
 shaders:
   path: ../../ambf_shaders/
   vertex: "shader.vs"
   fragment: "shader.fs"
-
+#####################I COMMENTED HERE##################
 light1:
   namespace: lights/
   name: light1
@@ -56,7 +58,6 @@ cameraL:
   publish image: True
   publish image interval: 5
   publish image resolution: { width: 640, height: 480 }
-  # publish image resolution: { width: 1920, height: 1080 }
   publish depth: True
   publish depth resolution: { width: 640, height: 480 }
   # multipass: True
@@ -78,7 +79,7 @@ cameraL2:
   publish image: True
   visible: False
   publish image interval: 5
-  # publish image resolution: { width: 1920, height: 1080 }
+  publish image resolution: { width: 1920, height: 1080 }
   publish image resolution: { width: 640, height: 480 }
   publish depth: True
   publish depth resolution: { width: 640, height: 480 }
@@ -100,7 +101,7 @@ cameraR:
   #   fragment: shader.fs
   publish image: True
   publish image interval: 5
-  # publish image resolution: { width: 1920, height: 1080 }
+  publish image resolution: { width: 1920, height: 1080 }
   publish image resolution: { width: 640, height: 480 }
   publish depth: True
   publish depth resolution: { width: 640, height: 480 }
