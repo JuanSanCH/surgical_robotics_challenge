@@ -42,7 +42,7 @@
 #     \version   1.0
 # */
 # //==============================================================================
-from surgical_robotics_challenge.kinematics.psmIK import *
+from surgical_robotics_challenge.kinematics.psmKinematics import *
 from surgical_robotics_challenge.simulation_manager import SimulationManager
 from surgical_robotics_challenge.psm_arm import PSM
 import time
@@ -78,9 +78,10 @@ class PSMController:
         if self.arm.target_FK is not None:
             ik_solution = self.arm.get_ik_solution()
             ik_solution = np.append(ik_solution, 0)
-            T_t_b = convert_mat_to_frame(compute_FK(ik_solution))
+            T_t_b = convert_mat_to_frame(self.arm.compute_FK(ik_solution))
             T_t_w = self.arm.get_T_b_w() * T_t_b
             self.arm.target_FK.set_pose(T_t_w)
+
     def run(self):
             self.update_arm_pose()
             self.update_visual_markers()
@@ -116,7 +117,6 @@ if __name__ == "__main__":
     parsed_args.run_psm_two = get_boolean_from_opt(parsed_args.run_psm_two)
     parsed_args.run_psm_three = get_boolean_from_opt(parsed_args.run_psm_three)
     parsed_args.run_ecm = get_boolean_from_opt(parsed_args.run_ecm)
-
     simulation_manager = SimulationManager(parsed_args.client_name)
 
     time.sleep(0.5)
